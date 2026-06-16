@@ -1,8 +1,12 @@
 import { defineConfig } from 'vitest/config';
+import { fileURLToPath } from 'node:url';
 
-// Por defecto entorno `node`: domain y application se testean puros, sin browser.
-// Los tests de adapters que toquen DOM declaran `// @vitest-environment jsdom` por archivo.
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
   test: {
     globals: true,
     environment: 'node',
